@@ -20,8 +20,8 @@ public class GetLastCharTest {
 
 	@Parameters
 	public static Collection<Object[]> set_of_parameters() {
-		return Arrays.asList(new Object[][] { { "√омель", 'л' }, { "√усь-’рустальный", 'н' }, { "«еленоградск", 'к' },
-				{ "»вдель", 'л' }, { "Ћенинск- узнецкий", 'и' } });
+		return Arrays.asList(new Object[][] { { "Гомель", 'л' }, { "Гусь-Хрустальный", 'н' }, { "Зеленоградск", 'к' },
+				{ "Ивдель", 'л' }, { "Ленинск- Кузнецкий", 'и' } });
 	}
 
 	public GetLastCharTest(String word, char lastChar) {
