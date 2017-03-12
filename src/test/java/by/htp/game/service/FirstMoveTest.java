@@ -24,4 +24,5 @@ public class FirstMoveTest {
 		assertTrue(GameLogic.inspectionWord("Новополоцк", cityPlayList, lastChar));
 		assertEquals(1, cityPlayList.size());
 	}
+
 }

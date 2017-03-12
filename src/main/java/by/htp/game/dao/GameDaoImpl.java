@@ -3,7 +3,6 @@ package by.htp.game.dao;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -11,31 +10,26 @@ import java.io.PrintWriter;
 import java.util.HashSet;
 import java.util.Set;
 
-public class GameDaoImpl implements IGameDao {
-
-	private static final String PATH = "resources\\CityList.txt";
+public class GameDaoImpl implements IGameDao{
 
 	@Override
-	public Set<String> readCityList() {
+	public Set<String> readCityList(String path) throws DaoException {
 		Set<String> citySet = new HashSet<String>();
 		BufferedReader br = null;
 		String tmpLine;
 		try {
-			br = new BufferedReader(new FileReader(new File(PATH)));
+			br = new BufferedReader(new FileReader(new File(path)));
 			while ((tmpLine = br.readLine()) != null) {
 				citySet.add(tmpLine.trim());
 			}
-		} catch (FileNotFoundException e) {
-			System.err.println("something wrong with file" + e);
 		} catch (IOException e) {
-			System.err.println("something wrong with file" + e);
-			e.printStackTrace();
+			throw new DaoException("something wrong with file",e);
 		} finally {
 			if (br != null) {
 				try {
 					br.close();
 				} catch (IOException e) {
-					System.err.println("something wrong with file" + e);
+					throw new DaoException("something wrong with file",e);
 				}
 			}
 		}
@@ -43,15 +37,15 @@ public class GameDaoImpl implements IGameDao {
 	}
 
 	@Override
-	public void addToFileCity(String word) {
+	public void addToFileCity(String word,String path) throws DaoException {
 		if (word != null) {
-			File f = new File(PATH);
+			File f = new File(path);
 			PrintWriter pw = null;
 			try {
 				pw = new PrintWriter(new BufferedWriter(new FileWriter(f, true)));
 				pw.println(word);
 			} catch (IOException e) {
-				System.err.println("something wrong with file" + e);
+				throw new DaoException("something wrong with file",e);
 			} finally {
 				if (pw != null) {
 					pw.close();
@@ -61,4 +55,5 @@ public class GameDaoImpl implements IGameDao {
 			System.err.println("String is null");
 		}
 	}
+	
 }

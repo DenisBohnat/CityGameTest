@@ -8,7 +8,6 @@ public class Main {
 
 		GameServiceImpl game = new GameServiceImpl();
 		game.playGame();
-
 	}
 
 }

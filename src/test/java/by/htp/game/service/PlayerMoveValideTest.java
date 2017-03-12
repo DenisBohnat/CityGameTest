@@ -34,4 +34,5 @@ public class PlayerMoveValideTest {
 		assertTrue(GameLogic.inspectionWord("брест", cityPlayList, 'б'));
 		assertEquals((sizeList + 1), cityPlayList.size());
 	}
+
 }

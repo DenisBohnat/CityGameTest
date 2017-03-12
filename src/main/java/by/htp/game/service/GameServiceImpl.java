@@ -5,10 +5,13 @@ import java.util.LinkedHashSet;
 import java.util.Scanner;
 import java.util.Set;
 
+import by.htp.game.dao.DaoException;
 import by.htp.game.dao.GameDaoImpl;
 
-public class GameServiceImpl implements IGameService {
+public class GameServiceImpl implements IGameService{
 
+	private static final String PATH = "src/main/resources\\CityList.txt";
+	
 	private Set<String> cityList;
 	private Set<String> cityPlayList;
 	private char lastChar;
@@ -17,7 +20,11 @@ public class GameServiceImpl implements IGameService {
 	@Override
 	public void playGame() {
 		GameDaoImpl gameDao = new GameDaoImpl();
-		cityList = gameDao.readCityList();
+		try {
+			cityList = gameDao.readCityList(PATH);
+		} catch (DaoException e) {
+			System.err.println("something wrong with file" + e);
+		}
 		cityPlayList = new LinkedHashSet<String>();
 		boolean endGame = false;
 		boolean inspWord = false;
@@ -67,11 +74,16 @@ public class GameServiceImpl implements IGameService {
 				String currentString = it.next();
 				currentString = currentString.substring(0, 1).toUpperCase() + currentString.substring(1);
 				if (!(cityList.contains(currentString))) {
-					gameDao.addToFileCity(currentString);
+					try {
+						gameDao.addToFileCity(currentString,PATH);
+					} catch (DaoException e) {
+						System.err.println("something wrong with file" + e);
+					}
 				}
 			}
 		} else {
 			System.out.println("no cities");
 		}
 	}
+	
 }

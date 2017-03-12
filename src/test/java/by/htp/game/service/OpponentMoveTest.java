@@ -15,27 +15,30 @@ import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
 @RunWith(value = Parameterized.class)
-public class OpponentMoveLoseTest {
+public class OpponentMoveTest {
 
 	private static Set<String> cityList;
 	private static Set<String> cityPlayList;
 	private String word;
-	
-	public OpponentMoveLoseTest(String word) {
+
+	public OpponentMoveTest(String word) {
 		this.word = word;
 	}
-	
+
 	@Parameters
 	public static Collection<Object[]> set_of_parameters() {
 		return Arrays.asList(
-				new Object[][] { { "ясная поляна" }, { "Вологда" }, { "гомель" }, { "вологда" } });
+				new Object[][] { { "ясная поляна" }, { "Вологда" }, { "Зеленоградск" }, { "ивдель" }, { "Полоцк" } });
 	}
-	
+
 	@BeforeClass
 	public static void initCitiesList() {
 		cityList = new HashSet<String>();
 		cityList.add("Анапа");
+		cityList.add("Ангарск");
+		cityList.add("Арзамас");
 		cityList.add("Канск");
+		cityList.add("Лепель");
 		cityList.add("Клецк");
 		cityPlayList = new LinkedHashSet<String>();
 		cityPlayList.add("анапа");
@@ -46,8 +49,8 @@ public class OpponentMoveLoseTest {
 	}
 
 	@Test
-	public void testOpponentMoveLose() {
-		assertFalse(GameLogic.opponentMove(word, cityList, cityPlayList));
+	public void testOpponentMoveValide() {
+		assertTrue(GameLogic.opponentMove(word, cityList, cityPlayList));
 	}
 
 }

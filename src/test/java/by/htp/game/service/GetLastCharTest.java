@@ -10,8 +10,6 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
-import by.htp.game.service.GameLogic;
-
 @RunWith(value = Parameterized.class)
 public class GetLastCharTest {
 
@@ -21,7 +19,7 @@ public class GetLastCharTest {
 	@Parameters
 	public static Collection<Object[]> set_of_parameters() {
 		return Arrays.asList(new Object[][] { { "Гомель", 'л' }, { "Гусь-Хрустальный", 'н' }, { "Зеленоградск", 'к' },
-				{ "Ивдель", 'л' }, { "Ленинск- Кузнецкий", 'и' } });
+				{ "Ивдель", 'л' }, { "Ленинск-Кузнецкий", 'и' } });
 	}
 
 	public GetLastCharTest(String word, char lastChar) {

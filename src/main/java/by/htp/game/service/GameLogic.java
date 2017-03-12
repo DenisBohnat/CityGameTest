@@ -60,4 +60,5 @@ public class GameLogic {
 		}
 		return oppMove;
 	}
+	
 }
